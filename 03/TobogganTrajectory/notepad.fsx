@@ -1,6 +1,7 @@
 open System
 open System.IO
 
+#time
 let readInput filename =
     File.ReadAllLines(filename)
 
@@ -23,10 +24,11 @@ let traverseMap (right, down) (map:string []) =
 
 
 // let steps = (3,1)
+// let paths = [(3,1)] // part 1jjjjjgg
 let paths = [(1,1);(3,1);(5,1);(7,1);(1,2)]
 
 let findTreas input steps =
     input |> createMap steps |> traverseMap steps |> List.filter (fun c -> c='#') |> List.length
 
 paths |> List.map (findTreas (readInput "testInput.txt")) |> List.fold (*) 1
-paths |> List.map (findTreas (readInput "input.txt")) |> List.map (fun n -> Convert.ToUInt32(n)) |> List.fold (*) 1u
+paths |> List.map (findTreas (readInput "input.txt") >> Convert.ToUInt32) |> List.fold (*) 1u
