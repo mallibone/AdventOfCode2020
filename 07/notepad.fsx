@@ -21,13 +21,12 @@ let rec findPossibleContainers (bagToStow:string) (bagDefinitions:list<string * 
     |> List.collect (fun bag -> [bag] |> List.append (findPossibleContainers bag bagDefinitions))
     |> List.distinct
 
-let rec containingBags parentBag sum (bagDefinitions:list<string * list<int * string>>) =
+let rec containingBags parentBag (bagDefinitions:list<string * list<int * string>>) =
     let childBags = bagDefinitions |> List.filter(fun (bag, _) -> bag = parentBag) |> List.collect (fun (_, containedBags) -> containedBags)
     match childBags with
-    | [] -> sum
+    | [] -> 0
     | _ -> 
-        let newSum = sum + (childBags |> List.sumBy (fun (count, _) -> count))
-        childBags |> List.reduce (fun (_, name) -> (containingBags name newSum bagDefinitions))
+        (childBags |> List.sumBy (fun (count, name) -> count + count * (containingBags name bagDefinitions)))
 
 // File.ReadLines("testInput.txt")
 File.ReadLines("input.txt")
@@ -37,7 +36,9 @@ File.ReadLines("input.txt")
 |> List.length
 
 // part 2
-File.ReadLines("input.txt")
+// File.ReadLines("test2Input.txt")
+//File.ReadLines("testInput.txt")
+ File.ReadLines("input.txt")
 |> Seq.toList
 |> List.map getBagDefinitions
-|> containingBags "shiny gold" 0
+|> containingBags "shiny gold"
