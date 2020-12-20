@@ -23,8 +23,8 @@ let playGame finalRound startingNumbers =
     playGame (memory.Count+1) (startingNumbers |> Seq.last)
 
 #time
-// File.ReadAllLines("sampleInput.txt")
 // let rounds = 2020 // part I
 let rounds = 30000000 // part II
+// File.ReadAllLines("sampleInput.txt")
 File.ReadAllLines("input.txt")
 |> Array.map ((fun line -> line.Split(",")) >> Seq.map Convert.ToInt32 >> (playGame rounds))
