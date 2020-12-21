@@ -66,7 +66,6 @@ let rec run round pocketState =
     else
         pocketState
 
-parseInput sampleInput
-|> run 5
+parseInput input
+|> run 6
 |> Map.toSeq |> Seq.map snd |> Seq.filter ((=) Active) |> Seq.length
-[for z in -1 .. 1 do z]
