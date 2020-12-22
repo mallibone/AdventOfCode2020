@@ -1,6 +1,6 @@
 #time
-#r @"nuget: Unquote"
-open Swensen.Unquote
+// #r @"nuget: Unquote"
+// open Swensen.Unquote
 open System
 open System.IO
 
@@ -75,10 +75,10 @@ File.ReadAllLines(input)
 |> Seq.sum
 
 
-test <@ parse "123" = 123L @>
-test <@ parse "1 + 2" = 3L @>
-test <@ parse "1 + 2 + 3" = 6L @>
-test <@ parse "1 + 2 * 3" = 9L @>
-test <@ parse "1 + (2 * 3)" = 7L @>
-test <@ parse "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2" = 13632L @>
-test <@ parse "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))" = 12240L @>
+// test <@ parse "123" = 123L @>
+// test <@ parse "1 + 2" = 3L @>
+// test <@ parse "1 + 2 + 3" = 6L @>
+// test <@ parse "1 + 2 * 3" = 9L @>
+// test <@ parse "1 + (2 * 3)" = 7L @>
+// test <@ parse "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2" = 13632L @>
+// test <@ parse "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))" = 12240L @>
